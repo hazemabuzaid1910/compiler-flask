@@ -29,14 +29,7 @@ public class Main {
     public static boolean first = true;
   public static int id_element=0;
     public static void main(String[] args) throws IOException {
-//    FlaskLexer lexer = new FlaskLexer(CharStreams.fromFileName("input.py"));
-//    CommonTokenStream tokens = new CommonTokenStream(lexer);
-//
-//        tokens.fill();
-//        for (Token token : tokens.getTokens()) {
-//            String tokenName = FlaskLexer.VOCABULARY.getSymbolicName(token.getType());
-//            System.out.println(tokenName + ": '" + token.getText().replace("\n", "\\n") + "'");
-//        }
+
 
         String filePath = args.length > 0
                 ? args[0]
@@ -48,21 +41,13 @@ public class Main {
             return;
         }
 
-        // ================================
-        // إعداد Lexer و Parser
-        // ================================
+
         FlaskLexer lexer = new FlaskLexer(CharStreams.fromFileName(filePath));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         FlaskParser parser = new FlaskParser(tokens);
 
-        // ================================
-        // استخراج ParseTree
-        // ================================
-        ParseTree tree = parser.program();
 
-        // ================================
-        // زيارة الشجرة باستخدام Visitor
-        // ================================
+        ParseTree tree = parser.program();
         Visitor visitor = new Visitor();
         Program programAst = (Program) visitor.visit(tree);
 
@@ -87,9 +72,7 @@ public class Main {
                 StandardCharsets.UTF_8
         );
         semanticError.check_Errors();
-        // ================================
-        // طباعة AST الناتجة
-        // ================================
+
         System.out.println("========== AST ==========");
         System.out.print(programAst);
       Generator generator =
