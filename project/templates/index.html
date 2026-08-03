@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Products</title>
+    <link rel="stylesheet" href="style.css"/>
+
+</head>
+
+<body class="page">
+
+<div class="products-container">
+
+    <h1 class="page-title">Products List</h1>
+
+    <a href="/add" class="add-btn">
+        Add New Product
+    </a>
+
+    <div class="products-grid">
+
+        {% for product in products %}
+
+        <div class="product-card">
+
+            <img
+                    src="{{ product.image }}"
+                    class="product-card-image"
+            />
+
+            <h3 class="product-name">
+                {{ product.name }}
+            </h3>
+
+            <p class="product-price">
+                ${{ product.price }}
+            </p>
+
+            <div class="actions">
+
+                <a
+                        href="/edit/{{ product.id }}"
+                        class="edit-btn"
+                >
+                    Edit
+                </a>
+
+                <a
+                        href="/delete/{{ product.id }}"
+                        class="delete-btn"
+                >
+                    Delete
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

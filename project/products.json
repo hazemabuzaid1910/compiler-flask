@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "LAPTOP HP",
+    "price": "33333333.3",
+    "image": "https://img.magnific.com/free-photo/closeup-shot-beautiful-butterfly-with-interesting-textures-orange-petaled-flower_181624-7640.jpg?semt=ais_hybrid&w=740&q=80"
+  },
+  {
+    "id": 2,
+    "name": "mobile",
+    "price": "21",
+    "image": "https://img.magnific.com/free-photo/closeup-shot-beautiful-butterfly-with-interesting-textures-orange-petaled-flower_181624-7640.jpg?semt=ais_hybrid&w=740&q=80"
+  },
+  {
+    "id": 3,
+    "name": "Hazem Abuzaid",
+    "price": "33.3",
+    "image": "https://img.magnific.com/free-photo/closeup-shot-beautiful-butterfly-with-interesting-textures-orange-petaled-flower_181624-7640.jpg?semt=ais_hybrid&w=740&q=80"
+  }
+]

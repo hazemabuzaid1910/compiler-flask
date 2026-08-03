@@ -1,0 +1,515 @@
+[
+  {
+    "type": "HtmlDocument",
+    "children": [
+      {
+        "type": "Element",
+        "tag": "html",
+        "attributes": {},
+        "children": [
+          {
+            "type": "Element",
+            "tag": "head",
+            "attributes": {},
+            "children": [
+              {
+                "type": "Element",
+                "tag": "title",
+                "attributes": {},
+                "children": [
+                  {
+                    "type": "Text",
+                    "value": "Products"
+                  }
+                ]
+              },
+              {
+                "type": "Element",
+                "tag": "link",
+                "attributes": {
+                  "rel": "stylesheet",
+                  "href": "style.css"
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "Element",
+            "tag": "body",
+            "attributes": {
+              "class": "page"
+            },
+            "children": [
+              {
+                "type": "Element",
+                "tag": "div",
+                "attributes": {
+                  "class": "products-container"
+                },
+                "children": [
+                  {
+                    "type": "Element",
+                    "tag": "h1",
+                    "attributes": {
+                      "class": "page-title"
+                    },
+                    "children": [
+                      {
+                        "type": "Text",
+                        "value": "ProductsList"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Element",
+                    "tag": "a",
+                    "attributes": {
+                      "href": "/add",
+                      "class": "add-btn"
+                    },
+                    "children": [
+                      {
+                        "type": "Text",
+                        "value": "AddNewProduct"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Element",
+                    "tag": "div",
+                    "attributes": {
+                      "class": "products-grid"
+                    },
+                    "children": [
+                      {
+                        "type": "ForBlock",
+                        "variable": "product",
+                        "iterable": "products",
+                        "body": [
+                          {
+                            "type": "Element",
+                            "tag": "div",
+                            "attributes": {
+                              "class": "product-card"
+                            },
+                            "children": [
+                              {
+                                "type": "Element",
+                                "tag": "img",
+                                "attributes": {
+                                  "src": {
+                                    "type": "TemplateText",
+                                    "value": "\"{{ product.image }}\"",
+                                    "variables": [
+                                      "product.image"
+                                    ]
+                                  },
+                                  "class": "product-card-image"
+                                },
+                                "children": []
+                              },
+                              {
+                                "type": "Element",
+                                "tag": "h3",
+                                "attributes": {
+                                  "class": "product-name"
+                                },
+                                "children": [
+                                  {
+                                    "type": "Variable",
+                                    "name": "product.name"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "Element",
+                                "tag": "p",
+                                "attributes": {
+                                  "class": "product-price"
+                                },
+                                "children": [
+                                  {
+                                    "type": "Text",
+                                    "value": "$"
+                                  },
+                                  {
+                                    "type": "Variable",
+                                    "name": "product.price"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "Element",
+                                "tag": "div",
+                                "attributes": {
+                                  "class": "actions"
+                                },
+                                "children": [
+                                  {
+                                    "type": "Element",
+                                    "tag": "a",
+                                    "attributes": {
+                                      "href": {
+                                        "type": "TemplateText",
+                                        "value": "\"/edit/{{ product.id }}\"",
+                                        "variables": [
+                                          "product.id"
+                                        ]
+                                      },
+                                      "class": "edit-btn"
+                                    },
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "value": "Edit"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "Element",
+                                    "tag": "a",
+                                    "attributes": {
+                                      "href": {
+                                        "type": "TemplateText",
+                                        "value": "\"/delete/{{ product.id }}\"",
+                                        "variables": [
+                                          "product.id"
+                                        ]
+                                      },
+                                      "class": "delete-btn"
+                                    },
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "value": "Delete"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "HtmlDocument",
+    "children": [
+      {
+        "type": "Element",
+        "tag": "html",
+        "attributes": {},
+        "children": [
+          {
+            "type": "Element",
+            "tag": "head",
+            "attributes": {},
+            "children": [
+              {
+                "type": "Element",
+                "tag": "title",
+                "attributes": {},
+                "children": [
+                  {
+                    "type": "Text",
+                    "value": "AddProduct"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Element",
+            "tag": "body",
+            "attributes": {
+              "style": "font-family: Arial; text-align:center;"
+            },
+            "children": [
+              {
+                "type": "Element",
+                "tag": "h1",
+                "attributes": {},
+                "children": [
+                  {
+                    "type": "Text",
+                    "value": "AddProduct"
+                  }
+                ]
+              },
+              {
+                "type": "Element",
+                "tag": "form",
+                "attributes": {
+                  "method": "POST"
+                },
+                "children": [
+                  {
+                    "type": "Element",
+                    "tag": "input",
+                    "attributes": {
+                      "name": "name",
+                      "placeholder": "Product Name"
+                    },
+                    "children": []
+                  },
+                  {
+                    "type": "Element",
+                    "tag": "br",
+                    "attributes": {},
+                    "children": []
+                  },
+                  {
+                    "type": "Element",
+                    "tag": "input",
+                    "attributes": {
+                      "name": "price",
+                      "placeholder": "Price"
+                    },
+                    "children": []
+                  },
+                  {
+                    "type": "Element",
+                    "tag": "br",
+                    "attributes": {},
+                    "children": []
+                  },
+                  {
+                    "type": "Element",
+                    "tag": "input",
+                    "attributes": {
+                      "name": "image",
+                      "placeholder": "Image URL"
+                    },
+                    "children": []
+                  },
+                  {
+                    "type": "Element",
+                    "tag": "br",
+                    "attributes": {},
+                    "children": []
+                  },
+                  {
+                    "type": "Element",
+                    "tag": "button",
+                    "attributes": {
+                      "type": "submit"
+                    },
+                    "children": [
+                      {
+                        "type": "Text",
+                        "value": "Add"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "Element",
+                "tag": "br",
+                "attributes": {},
+                "children": []
+              },
+              {
+                "type": "Element",
+                "tag": "a",
+                "attributes": {
+                  "href": "/"
+                },
+                "children": [
+                  {
+                    "type": "Text",
+                    "value": "Back"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "HtmlDocument",
+    "children": [
+      {
+        "type": "Element",
+        "tag": "html",
+        "attributes": {},
+        "children": [
+          {
+            "type": "Element",
+            "tag": "head",
+            "attributes": {},
+            "children": [
+              {
+                "type": "Element",
+                "tag": "title",
+                "attributes": {},
+                "children": [
+                  {
+                    "type": "Text",
+                    "value": "EditProduct"
+                  }
+                ]
+              },
+              {
+                "type": "Element",
+                "tag": "link",
+                "attributes": {
+                  "rel": "stylesheet",
+                  "href": "style.css"
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "type": "Element",
+            "tag": "body",
+            "attributes": {
+              "class": "page"
+            },
+            "children": [
+              {
+                "type": "Element",
+                "tag": "div",
+                "attributes": {
+                  "class": "container"
+                },
+                "children": [
+                  {
+                    "type": "Element",
+                    "tag": "h1",
+                    "attributes": {
+                      "class": "page-title"
+                    },
+                    "children": [
+                      {
+                        "type": "Text",
+                        "value": "EditProduct"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Element",
+                    "tag": "form",
+                    "attributes": {
+                      "method": "POST",
+                      "class": "edit-form"
+                    },
+                    "children": [
+                      {
+                        "type": "Element",
+                        "tag": "img",
+                        "attributes": {
+                          "src": {
+                            "type": "TemplateText",
+                            "value": "\"{{product.image}}\"",
+                            "variables": [
+                              "product.image"
+                            ]
+                          },
+                          "class": "product-image"
+                        },
+                        "children": []
+                      },
+                      {
+                        "type": "Element",
+                        "tag": "input",
+                        "attributes": {
+                          "name": "name",
+                          "value": {
+                            "type": "TemplateText",
+                            "value": "\"{{ product.name }}\"",
+                            "variables": [
+                              "product.name"
+                            ]
+                          },
+                          "class": "input-field",
+                          "placeholder": "Product Name"
+                        },
+                        "children": []
+                      },
+                      {
+                        "type": "Element",
+                        "tag": "input",
+                        "attributes": {
+                          "name": "price",
+                          "value": {
+                            "type": "TemplateText",
+                            "value": "\"{{ product.price }}\"",
+                            "variables": [
+                              "product.price"
+                            ]
+                          },
+                          "class": "input-field",
+                          "placeholder": "Price"
+                        },
+                        "children": []
+                      },
+                      {
+                        "type": "Element",
+                        "tag": "input",
+                        "attributes": {
+                          "name": "image",
+                          "value": {
+                            "type": "TemplateText",
+                            "value": "\"{{ product.image }}\"",
+                            "variables": [
+                              "product.image"
+                            ]
+                          },
+                          "class": "input-field",
+                          "placeholder": "Image URL"
+                        },
+                        "children": []
+                      },
+                      {
+                        "type": "Element",
+                        "tag": "button",
+                        "attributes": {
+                          "type": "submit",
+                          "class": "save-btn"
+                        },
+                        "children": [
+                          {
+                            "type": "Text",
+                            "value": "SaveChanges"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Element",
+                    "tag": "a",
+                    "attributes": {
+                      "href": "/",
+                      "class": "back-link"
+                    },
+                    "children": [
+                      {
+                        "type": "Text",
+                        "value": "Back"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

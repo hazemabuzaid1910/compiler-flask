@@ -1,0 +1,878 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportFrom",
+      "module": "flask",
+      "symbols": [
+        "Flask",
+        "render_template",
+        "request",
+        "redirect"
+      ]
+    },
+    {
+      "type": "Import",
+      "modules": [
+        "json"
+      ]
+    },
+    {
+      "type": "Assignment",
+      "target": "app",
+      "value": {
+        "type": "Call",
+        "function": "Flask",
+        "arguments": [
+          "__name__"
+        ]
+      }
+    },
+    {
+      "type": "Assignment",
+      "target": "DATA_FILE",
+      "value": "products.json"
+    },
+    {
+      "type": "Assignment",
+      "target": "pp"
+    },
+    {
+      "type": "Function",
+      "name": "load_products",
+      "body": [
+        {
+          "type": "WithStatement"
+        }
+      ]
+    },
+    {
+      "type": "Function",
+      "name": "save_products",
+      "parameters": [
+        "products"
+      ],
+      "body": [
+        {
+          "type": "WithStatement"
+        }
+      ]
+    },
+    {
+      "type": "DecoratedFunction",
+      "decorator": {
+        "type": "Decorator",
+        "name": "app.route",
+        "arguments": [
+          "/"
+        ]
+      },
+      "function": {
+        "type": "Function",
+        "name": "home",
+        "body": [
+          {
+            "type": "Assignment",
+            "target": "products",
+            "value": {
+              "type": "Call",
+              "function": "load_products"
+            }
+          },
+          {
+            "type": "Return",
+            "value": {
+              "type": "Call",
+              "function": "render_template",
+              "arguments": [
+                "index.html",
+                {
+                  "name": "products",
+                  "value": "products"
+                }
+              ]
+            },
+            "template": "index.html",
+            "html": {
+              "type": "HtmlDocument",
+              "children": [
+                {
+                  "type": "Element",
+                  "tag": "html",
+                  "children": [
+                    {
+                      "type": "Element",
+                      "tag": "head",
+                      "children": [
+                        {
+                          "type": "Element",
+                          "tag": "title",
+                          "children": [
+                            {
+                              "type": "Text",
+                              "value": "Products"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Element",
+                          "tag": "link",
+                          "attributes": {
+                            "rel": "stylesheet",
+                            "href": "style.css"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Element",
+                      "tag": "body",
+                      "attributes": {
+                        "class": "page"
+                      },
+                      "children": [
+                        {
+                          "type": "Element",
+                          "tag": "div",
+                          "attributes": {
+                            "class": "products-container"
+                          },
+                          "children": [
+                            {
+                              "type": "Element",
+                              "tag": "h1",
+                              "attributes": {
+                                "class": "page-title"
+                              },
+                              "children": [
+                                {
+                                  "type": "Text",
+                                  "value": "ProductsList"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Element",
+                              "tag": "a",
+                              "attributes": {
+                                "href": "/add",
+                                "class": "add-btn"
+                              },
+                              "children": [
+                                {
+                                  "type": "Text",
+                                  "value": "AddNewProduct"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Element",
+                              "tag": "div",
+                              "attributes": {
+                                "class": "products-grid"
+                              },
+                              "children": [
+                                {
+                                  "type": "ForBlock",
+                                  "variable": "product",
+                                  "iterable": "products",
+                                  "body": [
+                                    {
+                                      "type": "Element",
+                                      "tag": "div",
+                                      "attributes": {
+                                        "class": "product-card"
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Element",
+                                          "tag": "img",
+                                          "attributes": {
+                                            "src": {
+                                              "type": "TemplateText",
+                                              "value": "\"{{ product.image }}\"",
+                                              "variables": [
+                                                "product.image"
+                                              ]
+                                            },
+                                            "class": "product-card-image"
+                                          }
+                                        },
+                                        {
+                                          "type": "Element",
+                                          "tag": "h3",
+                                          "attributes": {
+                                            "class": "product-name"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Variable",
+                                              "name": "product.name"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Element",
+                                          "tag": "p",
+                                          "attributes": {
+                                            "class": "product-price"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Text",
+                                              "value": "$"
+                                            },
+                                            {
+                                              "type": "Variable",
+                                              "name": "product.price"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Element",
+                                          "tag": "div",
+                                          "attributes": {
+                                            "class": "actions"
+                                          },
+                                          "children": [
+                                            {
+                                              "type": "Element",
+                                              "tag": "a",
+                                              "attributes": {
+                                                "href": {
+                                                  "type": "TemplateText",
+                                                  "value": "\"/edit/{{ product.id }}\"",
+                                                  "variables": [
+                                                    "product.id"
+                                                  ]
+                                                },
+                                                "class": "edit-btn"
+                                              },
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "value": "Edit"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "Element",
+                                              "tag": "a",
+                                              "attributes": {
+                                                "href": {
+                                                  "type": "TemplateText",
+                                                  "value": "\"/delete/{{ product.id }}\"",
+                                                  "variables": [
+                                                    "product.id"
+                                                  ]
+                                                },
+                                                "class": "delete-btn"
+                                              },
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "value": "Delete"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "DecoratedFunction",
+      "decorator": {
+        "type": "Decorator",
+        "name": "app.route",
+        "arguments": [
+          "/add",
+          {
+            "name": "methods"
+          }
+        ]
+      },
+      "function": {
+        "type": "Function",
+        "name": "add_product",
+        "body": [
+          {
+            "type": "If",
+            "condition": {
+              "type": "BinaryExpression",
+              "operator": "\u003d\u003d",
+              "left": "request.method",
+              "right": "POST"
+            },
+            "then": [
+              {
+                "type": "Assignment",
+                "target": "products",
+                "value": {
+                  "type": "Call",
+                  "function": "load_products"
+                }
+              },
+              {
+                "type": "Assignment",
+                "target": "new_product"
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "Call",
+                  "function": "products.append",
+                  "arguments": [
+                    "new_product"
+                  ]
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "Call",
+                  "function": "save_products",
+                  "arguments": [
+                    "products"
+                  ]
+                }
+              },
+              {
+                "type": "Return",
+                "value": {
+                  "type": "Call",
+                  "function": "redirect",
+                  "arguments": [
+                    "/"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "Return",
+            "value": {
+              "type": "Call",
+              "function": "render_template",
+              "arguments": [
+                "add.html"
+              ]
+            },
+            "template": "add.html",
+            "html": {
+              "type": "HtmlDocument",
+              "children": [
+                {
+                  "type": "Element",
+                  "tag": "html",
+                  "children": [
+                    {
+                      "type": "Element",
+                      "tag": "head",
+                      "children": [
+                        {
+                          "type": "Element",
+                          "tag": "title",
+                          "children": [
+                            {
+                              "type": "Text",
+                              "value": "AddProduct"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Element",
+                      "tag": "body",
+                      "attributes": {
+                        "style": "font-family: Arial; text-align:center;"
+                      },
+                      "children": [
+                        {
+                          "type": "Element",
+                          "tag": "h1",
+                          "children": [
+                            {
+                              "type": "Text",
+                              "value": "AddProduct"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Element",
+                          "tag": "form",
+                          "attributes": {
+                            "method": "POST"
+                          },
+                          "children": [
+                            {
+                              "type": "Element",
+                              "tag": "input",
+                              "attributes": {
+                                "name": "name",
+                                "placeholder": "Product Name"
+                              }
+                            },
+                            {
+                              "type": "Element",
+                              "tag": "br"
+                            },
+                            {
+                              "type": "Element",
+                              "tag": "input",
+                              "attributes": {
+                                "name": "price",
+                                "placeholder": "Price"
+                              }
+                            },
+                            {
+                              "type": "Element",
+                              "tag": "br"
+                            },
+                            {
+                              "type": "Element",
+                              "tag": "input",
+                              "attributes": {
+                                "name": "image",
+                                "placeholder": "Image URL"
+                              }
+                            },
+                            {
+                              "type": "Element",
+                              "tag": "br"
+                            },
+                            {
+                              "type": "Element",
+                              "tag": "button",
+                              "attributes": {
+                                "type": "submit"
+                              },
+                              "children": [
+                                {
+                                  "type": "Text",
+                                  "value": "Add"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Element",
+                          "tag": "br"
+                        },
+                        {
+                          "type": "Element",
+                          "tag": "a",
+                          "attributes": {
+                            "href": "/"
+                          },
+                          "children": [
+                            {
+                              "type": "Text",
+                              "value": "Back"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "DecoratedFunction",
+      "decorator": {
+        "type": "Decorator",
+        "name": "app.route",
+        "arguments": [
+          "/delete/\u003cint:product_id\u003e"
+        ]
+      },
+      "function": {
+        "type": "Function",
+        "name": "delete_product",
+        "parameters": [
+          "product_id"
+        ],
+        "body": [
+          {
+            "type": "Assignment",
+            "target": "products",
+            "value": {
+              "type": "Call",
+              "function": "load_products"
+            }
+          },
+          {
+            "type": "Assignment",
+            "target": "products"
+          },
+          {
+            "type": "ExpressionStatement",
+            "expression": {
+              "type": "Call",
+              "function": "save_products",
+              "arguments": [
+                "products"
+              ]
+            }
+          },
+          {
+            "type": "Return",
+            "value": {
+              "type": "Call",
+              "function": "redirect",
+              "arguments": [
+                "/"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "DecoratedFunction",
+      "decorator": {
+        "type": "Decorator",
+        "name": "app.route",
+        "arguments": [
+          "/edit/\u003cint:product_id\u003e",
+          {
+            "name": "methods"
+          }
+        ]
+      },
+      "function": {
+        "type": "Function",
+        "name": "edit_product",
+        "parameters": [
+          "product_id"
+        ],
+        "body": [
+          {
+            "type": "Assignment",
+            "target": "products",
+            "value": {
+              "type": "Call",
+              "function": "load_products"
+            }
+          },
+          {
+            "type": "Assignment",
+            "target": "product"
+          },
+          {
+            "type": "For",
+            "variable": "p",
+            "iterable": "products",
+            "body": [
+              {
+                "type": "If",
+                "condition": {
+                  "type": "BinaryExpression",
+                  "operator": "\u003d\u003d",
+                  "left": {
+                    "type": "Index",
+                    "target": "p",
+                    "index": "id"
+                  },
+                  "right": "product_id"
+                },
+                "then": [
+                  {
+                    "type": "Assignment",
+                    "target": "product",
+                    "value": "p"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "If",
+            "condition": {
+              "type": "BinaryExpression",
+              "operator": "\u003d\u003d",
+              "left": "request.method",
+              "right": "POST"
+            },
+            "then": [
+              {
+                "type": "Assignment",
+                "target": "{\"type\":\"Index\",\"target\":\"product\",\"index\":\"name\"}",
+                "value": {
+                  "type": "Index",
+                  "target": "request.form",
+                  "index": "name"
+                }
+              },
+              {
+                "type": "Assignment",
+                "target": "{\"type\":\"Index\",\"target\":\"product\",\"index\":\"price\"}",
+                "value": {
+                  "type": "Index",
+                  "target": "request.form",
+                  "index": "price"
+                }
+              },
+              {
+                "type": "Assignment",
+                "target": "{\"type\":\"Index\",\"target\":\"product\",\"index\":\"image\"}",
+                "value": {
+                  "type": "Index",
+                  "target": "request.form",
+                  "index": "image"
+                }
+              },
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "Call",
+                  "function": "save_products",
+                  "arguments": [
+                    "products"
+                  ]
+                }
+              },
+              {
+                "type": "Return",
+                "value": {
+                  "type": "Call",
+                  "function": "redirect",
+                  "arguments": [
+                    "/"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "Return",
+            "value": {
+              "type": "Call",
+              "function": "render_template",
+              "arguments": [
+                "edit.html",
+                {
+                  "name": "product",
+                  "value": "product"
+                }
+              ]
+            },
+            "template": "edit.html",
+            "html": {
+              "type": "HtmlDocument",
+              "children": [
+                {
+                  "type": "Element",
+                  "tag": "html",
+                  "children": [
+                    {
+                      "type": "Element",
+                      "tag": "head",
+                      "children": [
+                        {
+                          "type": "Element",
+                          "tag": "title",
+                          "children": [
+                            {
+                              "type": "Text",
+                              "value": "EditProduct"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Element",
+                          "tag": "link",
+                          "attributes": {
+                            "rel": "stylesheet",
+                            "href": "style.css"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Element",
+                      "tag": "body",
+                      "attributes": {
+                        "class": "page"
+                      },
+                      "children": [
+                        {
+                          "type": "Element",
+                          "tag": "div",
+                          "attributes": {
+                            "class": "container"
+                          },
+                          "children": [
+                            {
+                              "type": "Element",
+                              "tag": "h1",
+                              "attributes": {
+                                "class": "page-title"
+                              },
+                              "children": [
+                                {
+                                  "type": "Text",
+                                  "value": "EditProduct"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Element",
+                              "tag": "form",
+                              "attributes": {
+                                "method": "POST",
+                                "class": "edit-form"
+                              },
+                              "children": [
+                                {
+                                  "type": "Element",
+                                  "tag": "img",
+                                  "attributes": {
+                                    "src": {
+                                      "type": "TemplateText",
+                                      "value": "\"{{product.image}}\"",
+                                      "variables": [
+                                        "product.image"
+                                      ]
+                                    },
+                                    "class": "product-image"
+                                  }
+                                },
+                                {
+                                  "type": "Element",
+                                  "tag": "input",
+                                  "attributes": {
+                                    "name": "name",
+                                    "value": {
+                                      "type": "TemplateText",
+                                      "value": "\"{{ product.name }}\"",
+                                      "variables": [
+                                        "product.name"
+                                      ]
+                                    },
+                                    "class": "input-field",
+                                    "placeholder": "Product Name"
+                                  }
+                                },
+                                {
+                                  "type": "Element",
+                                  "tag": "input",
+                                  "attributes": {
+                                    "name": "price",
+                                    "value": {
+                                      "type": "TemplateText",
+                                      "value": "\"{{ product.price }}\"",
+                                      "variables": [
+                                        "product.price"
+                                      ]
+                                    },
+                                    "class": "input-field",
+                                    "placeholder": "Price"
+                                  }
+                                },
+                                {
+                                  "type": "Element",
+                                  "tag": "input",
+                                  "attributes": {
+                                    "name": "image",
+                                    "value": {
+                                      "type": "TemplateText",
+                                      "value": "\"{{ product.image }}\"",
+                                      "variables": [
+                                        "product.image"
+                                      ]
+                                    },
+                                    "class": "input-field",
+                                    "placeholder": "Image URL"
+                                  }
+                                },
+                                {
+                                  "type": "Element",
+                                  "tag": "button",
+                                  "attributes": {
+                                    "type": "submit",
+                                    "class": "save-btn"
+                                  },
+                                  "children": [
+                                    {
+                                      "type": "Text",
+                                      "value": "SaveChanges"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Element",
+                              "tag": "a",
+                              "attributes": {
+                                "href": "/",
+                                "class": "back-link"
+                              },
+                              "children": [
+                                {
+                                  "type": "Text",
+                                  "value": "Back"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "If",
+      "condition": {
+        "type": "BinaryExpression",
+        "operator": "\u003d\u003d",
+        "left": "__name__",
+        "right": "__main__"
+      },
+      "then": [
+        {
+          "type": "ExpressionStatement",
+          "expression": {
+            "type": "Call",
+            "function": "app.run",
+            "arguments": [
+              {
+                "name": "debug",
+                "value": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body class="page">
+
+<div class="container">
+
+    <h1 class="page-title">Edit Product</h1>
+
+    <form method="POST" class="edit-form">
+
+        <img src="{{product.image}}" class="product-image" />
+
+        <input
+                name="name"
+                value="{{ product.name }}"
+                class="input-field"
+                placeholder="Product Name"
+        />
+
+        <input
+                name="price"
+                value="{{ product.price }}"
+                class="input-field"
+                placeholder="Price"
+        />
+
+        <input
+                name="image"
+                value="{{ product.image }}"
+                class="input-field"
+                placeholder="Image URL"
+        />
+
+        <button type="submit" class="save-btn">
+            Save Changes
+        </button>
+
+    </form>
+
+    <a href="/" class="back-link">
+        Back
+    </a>
+
+</div>
+
+</body>
+
+</html>
